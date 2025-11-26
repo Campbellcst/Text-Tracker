@@ -8,6 +8,66 @@ const textArea = document.getElementById("textArea");
 const themeToggle = document.getElementById("themeToggle");
 const themeIcon = document.getElementById("themeIcon");
 
+const excludeSpacesBtn = document.getElementById("excludeSpacesBtn");
+const charLimitBtn = document.getElementById("charLimitBtn");
+const charLimit = document.getElementById("charLimit");
+
+textArea.addEventListener("input", update);
+
+themeToggle.addEventListener("click", () => {
+    let dark = "true";
+    
+    if (dark) {
+        themeIcon.innerHTML = moonIcon;
+    }
+    else { 
+        themeIcon.innerHTML = sunIcon;
+    }
+    dark = !dark
+
+    document.body.classList.toggle("dark");
+    document.button.classList.toggle("dark");
+    charLimit.classList.toggle("dark");
+    textArea.classList.toggle("dark");
+    
+});
+
+excludeSpacesBtn.addEventListener("click", update);
+
+charLimitBtn.addEventListener("click", () => {
+  charLimit.classList.toggle("hidden");
+  textArea.maxLength = 10000;
+});
+
+charLimit.addEventListener("input", update);
+
+function update() {
+  let text = textArea.value;
+  let characters = text.length;
+  let words = text
+    .trim()
+    .split(/\s+/)
+    .filter((word) => word.length > 0 && /\w/.test(word)).length;
+  let sentences = text
+    .split(/[.!?]/)
+    .filter((str) => str.trim().length > 0).length;
+  let charLimitValue = charLimit.value;
+  
+  if (excludeSpacesBtn.checked) {
+    characters = text.trim().replaceAll(" ", "").length;
+  }
+
+  if (characters == charLimitValue && charLimitValue != 0 && charLimitBtn.checked) {
+    textArea.maxLength = charLimitValue;
+    alert("You have reached your character limit!");
+  }
+
+ 
+  charCount.textContent = characters;
+  wordCount.textContent = words;
+  sentenceCount.textContent = sentences;
+}
+
 const sunIcon = 
   `<svg
     xmlns="http://www.w3.org/2000/svg"
@@ -41,66 +101,3 @@ const moonIcon =
     />
   </svg>`
 ;
-
-const excludeSpacesBtn = document.getElementById("excludeSpacesBtn");
-const charLimitBtn = document.getElementById("charLimitBtn");
-const charLimit = document.getElementById("charLimit");
-
-textArea.addEventListener("input", update);
-
-
-
-themeToggle.addEventListener("click", () => {
-    let dark = "true";
-    
-    if (dark) {
-        themeIcon.innerHTML = moonIcon;
-    }
-    else { 
-        themeIcon.innerHTML = sunIcon;
-    }
-    dark = !dark
-
-    document.body.classList.toggle("dark");
-    document.button.classList.toggle("dark");
-    document.input.classList.toggle("dark");
-    textArea.classList.toggle("dark");
-    
-});
-
-excludeSpacesBtn.addEventListener("click", update);
-
-charLimitBtn.addEventListener("click", () => {
-  charLimit.classList.toggle("hidden");
-  textArea.maxLength = 1000;
-});
-
-charLimit.addEventListener("input", () => {
-  let charLimitValue = charLimit.value;
-  textArea.maxLength = charLimitValue;
-});
-
-function update() {
-  let text = textArea.value;
-  let characters = text.length;
-  let words = text
-    .trim()
-    .split(/\s+/)
-    .filter((word) => word.length > 0 && /\w/.test(word)).length;
-  let sentences = text
-    .split(/[.!?]/)
-    .filter((str) => str.trim().length > 0).length;
-  let charLimitValue = charLimit.value;
-
-  if (characters == charLimitValue && charLimitValue != 0 && charLimitBtn.checked) {
-    alert("You have reached your character limit!");
-  }
-
-  if (excludeSpacesBtn.checked) {
-    characters = text.trim().replaceAll(" ", "").length;
-  }
-
-  charCount.textContent = characters;
-  wordCount.textContent = words;
-  sentenceCount.textContent = sentences;
-}

@@ -134,7 +134,7 @@ button {
 
 .dark button {
   background-color: rgb(218, 211, 211);
-  color: rgb(27, 25, 49);;
+  color: rgb(27, 25, 49);
 }
 
 #themeToggle {
@@ -148,5 +148,10 @@ button {
 #themeIcon {
   width: 40px;
   height: 40;
+}
+
+body.dark #charLimit {
+  background-color: rgb(218, 211, 211);
+  color: rgb(27, 25, 49);
 }
 
