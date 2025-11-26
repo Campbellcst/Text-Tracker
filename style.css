@@ -1,0 +1,152 @@
+/*---Fair warning, confused tf out of myself writing the darkmode---
+---so css and js for that part will make no sense and half is probably wrong... but it works---*/
+
+body {
+  font-family: "Stack Sans Text";
+  font-weight: 500;
+  padding-left: 25vh;
+  padding-right: 25vh;
+  background-color: #050521;
+  color: rgb(240, 230, 230);
+}
+
+body.dark {
+  background-color: rgb(240, 230, 230);
+  color: #050521;
+}
+
+nav {
+  display: flex;
+  gap: 20px;
+  align-items: center;
+}
+
+.logo {
+  height: 40px;
+}
+
+.header {
+  text-align: center;
+  margin-top: 30px;
+  font-size: 4em;
+}
+
+.textbox {
+  border-radius: 20px;
+  width: 100%;
+  height: 8em;
+  padding: 1em;
+  resize: none;
+  display: block;
+  box-sizing: border-box;
+  background-color: rgb(27, 25, 49);
+  color: rgb(240, 230, 230);
+  font-size: 1.5em;
+  overflow: hidden;
+}
+
+body.dark .textbox {
+  background-color: rgb(218, 211, 211);
+  color: rgb(27, 25, 49);
+}
+
+button:hover, input:hover, label:hover {
+  cursor: grab;
+}
+
+.options {
+  margin: 20px 0 40px 0;
+  display: flex;
+  gap: 20px;
+}
+
+.options.dark {
+ color: rgb(27, 25, 49);
+}
+
+.info__container {
+  display: flex;
+  gap: 15px;
+}
+
+.stats {
+  width: 100%;
+  border-radius: 20px;
+  padding: 20px;
+}
+
+.stats h1 {
+  padding: 0;
+  margin: 0;
+  font-size: 4em;
+  color: rgb(27, 25, 49);
+}
+
+.stats p {
+  padding: 0;
+  margin: 0;
+  font-size: 1em;
+  color: rgb(27, 25, 49);
+}
+
+.dark h1, p  {
+  color: rgb(27, 25, 49);
+}
+
+.character__container {
+  background-image: linear-gradient(to bottom, #f17e89, #fc4457);
+}
+
+.word__container {
+  background-image: linear-gradient(to bottom, #5c92bb, #0066b4);
+}
+
+.sentence__container {
+  background-image: linear-gradient(to bottom, #e2b0f6, #d16ff8);
+}
+
+.wpm__container {
+  background-image: linear-gradient(to bottom, #83b7b0, #00b499);
+}
+
+.hidden {
+  display: none;
+}
+
+#charLimit {
+  background-color: rgb(27, 25, 49);
+  border-radius: 6px;
+  font-family: "Stack Sans Text";
+  padding-left: 5px;
+  color: rgb(240, 230, 230);
+}
+
+.options label:last-child {
+  margin-left: auto;
+}
+
+button {
+  background-color: rgb(27, 25, 49);
+  border-radius: 6px;
+  font-family: "Stack Sans Text";
+  color: rgb(240, 230, 230);
+}
+
+.dark button {
+  background-color: rgb(218, 211, 211);
+  color: rgb(27, 25, 49);;
+}
+
+#themeToggle {
+  width: 40px;
+  height: 40px;
+  margin-left: auto;
+  display: flex;
+
+}
+
+#themeIcon {
+  width: 40px;
+  height: 40;
+}
+
