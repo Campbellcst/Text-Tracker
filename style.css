@@ -89,10 +89,6 @@ button:hover, input:hover, label:hover {
   color: rgb(27, 25, 49);
 }
 
-.dark h1, p  {
-  color: rgb(27, 25, 49);
-}
-
 .character__container {
   background-image: linear-gradient(to bottom, #f17e89, #fc4457);
 }

@@ -10,6 +10,8 @@ const themeIcon = document.getElementById("themeIcon");
 const enterBtn = document.getElementById("enter");
 const letterDensity = document.getElementById("letters");
 const numberDensity = document.getElementById("numbers");
+const statsClass = document.querySelectorAll("stats");
+const header = document.getElementById("header");
 
 
 const excludeSpacesBtn = document.getElementById("excludeSpacesBtn");
@@ -33,7 +35,8 @@ themeToggle.addEventListener("click", () => {
     document.button.classList.toggle("dark");
     charLimit.classList.toggle("dark");
     textArea.classList.toggle("dark");
-    
+    statsClass.classList.toggle("dark");
+    header.classList.toggle("dark");
 });
 
 excludeSpacesBtn.addEventListener("click", update);
@@ -108,16 +111,29 @@ function countLetters() {
   //logic to assign each letter with occurence
   const uniqueLetters = [...new Set(sortedLetters)];
   const numOfuniqueLetters = uniqueLetters.length;
-  console.log(uniqueLetters);
-  console.log(numOfuniqueLetters);
-  console.log(letterCount);
 
-  for (let i = 0; i < numOfuniqueLetters; i++) {
+  //gets pairs together in array
+  let combinedArray = [];  
+  for (let i = 0; i < uniqueLetters.length + letterCount.length; i++) {
+    combinedArray.push(uniqueLetters[i]);
+    combinedArray.push(letterCount[i]);
+  }
+
+  //sorts pairs largest to smallest
+  const pairs = [];
+  for (let i = 0; i < combinedArray.length; i += 2) {
+  pairs.push([combinedArray[i], combinedArray[i + 1]]);
+  }
+  pairs.sort((a, b) => b[1] - a[1]);
+  const flatPairs = pairs.flat();
+
+  //prints to page
+  for (let i = 0; i < flatPairs.length / 2; i += 2) {
     const letter = document.createElement("p");
-    letter.textContent = uniqueLetters[i];
+    letter.textContent = flatPairs[i];
 
     const occurences = document.createElement("p");
-    occurences.textContent = letterCount[i];
+    occurences.textContent = flatPairs[i + 1];
 
     letterDensity.appendChild(letter);
     numberDensity.appendChild(occurences);
