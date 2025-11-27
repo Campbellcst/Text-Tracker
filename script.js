@@ -7,6 +7,10 @@ const sentenceCount = document.getElementById("sentenceCount");
 const textArea = document.getElementById("textArea");
 const themeToggle = document.getElementById("themeToggle");
 const themeIcon = document.getElementById("themeIcon");
+const enterBtn = document.getElementById("enter");
+const letterDensity = document.getElementById("letters");
+const numberDensity = document.getElementById("numbers");
+
 
 const excludeSpacesBtn = document.getElementById("excludeSpacesBtn");
 const charLimitBtn = document.getElementById("charLimitBtn");
@@ -66,6 +70,59 @@ function update() {
   charCount.textContent = characters;
   wordCount.textContent = words;
   sentenceCount.textContent = sentences;
+}
+
+enterBtn.addEventListener("click", countLetters);
+
+function countLetters() {
+  letterDensity.innerHTML = "";
+  numberDensity.innerHTML = "";
+  
+  let text = textArea.value;
+  let textNoSpaces = text.trim().replaceAll(" ", "");
+  let letters = [];
+  let sortedLetters = [];
+  let letterCount = [];
+
+  //logic for sorting letters
+  for (let i = 0; i < textNoSpaces.length; i++) {
+    letters[i] = textNoSpaces[i];
+  }
+  sortedLetters = letters.sort();
+  
+  //logic for occurences
+  let i = 0;
+  while (i < sortedLetters.length) {
+    let count = 1;
+    let j = i;
+
+    while (sortedLetters[j] === sortedLetters[j + 1]) {
+      count++;
+      j++;
+    }
+    
+    letterCount.push(count);
+    i = j + 1;
+  }
+
+  //logic to assign each letter with occurence
+  const uniqueLetters = [...new Set(sortedLetters)];
+  const numOfuniqueLetters = uniqueLetters.length;
+  console.log(uniqueLetters);
+  console.log(numOfuniqueLetters);
+  console.log(letterCount);
+
+  for (let i = 0; i < numOfuniqueLetters; i++) {
+    const letter = document.createElement("p");
+    letter.textContent = uniqueLetters[i];
+
+    const occurences = document.createElement("p");
+    occurences.textContent = letterCount[i];
+
+    letterDensity.appendChild(letter);
+    numberDensity.appendChild(occurences);
+  }
+
 }
 
 const sunIcon = 
