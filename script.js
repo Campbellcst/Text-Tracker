@@ -91,7 +91,7 @@ function countLetters() {
   barContainer.innerHTML = "";
   
   let text = textArea.value;
-  let textNoSpaces = text.trim().replaceAll(" ", "");
+  let textNoSpaces = text.toLowerCase().trim().replaceAll(" ", "");
   let letters = [];
   let sortedLetters = [];
   let letterCount = [];
@@ -147,10 +147,15 @@ function countLetters() {
 
     const progress = document.createElement("div");
     progress.classList.add("progressBar");
-    progress.style.width = (flatPairs[i + 1] / totalLetters) * 100 + "%";
+    let percent = (flatPairs[i + 1] / totalLetters) * 100 + "%";
+    progress.style.width = percent;
 
     const occurences = document.createElement("p");
-    occurences.textContent = flatPairs[i + 1];
+  
+    occurences.textContent = `${flatPairs[i + 1]}  (${percent})`;
+
+    const percentVal = document.createElement("p");
+    percentVal.textContent = percent;
 
     letterDensity.appendChild(letter);
     barContainer.appendChild(bar);
