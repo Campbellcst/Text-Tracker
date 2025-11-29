@@ -10,7 +10,8 @@ const themeIcon = document.getElementById("themeIcon");
 const enterBtn = document.getElementById("enter");
 const letterDensity = document.getElementById("letters");
 const numberDensity = document.getElementById("numbers");
-const statsClass = document.querySelectorAll("stats");
+const barContainer = document.querySelector(".bar__container");
+const statsClass = document.querySelectorAll(".stats");
 const header = document.getElementById("header");
 
 
@@ -80,6 +81,7 @@ enterBtn.addEventListener("click", countLetters);
 function countLetters() {
   letterDensity.innerHTML = "";
   numberDensity.innerHTML = "";
+  barContainer.innerHTML = "";
   
   let text = textArea.value;
   let textNoSpaces = text.trim().replaceAll(" ", "");
@@ -127,15 +129,24 @@ function countLetters() {
   pairs.sort((a, b) => b[1] - a[1]);
   const flatPairs = pairs.flat();
 
+  const totalLetters = textNoSpaces.length;
   //prints to page
   for (let i = 0; i < flatPairs.length / 2; i += 2) {
     const letter = document.createElement("p");
     letter.textContent = flatPairs[i];
 
+    const bar = document.createElement("div");
+    bar.classList.add("bar");
+
+    const progress = document.createElement("div");
+    progress.classList.add("progressBar");
+
     const occurences = document.createElement("p");
     occurences.textContent = flatPairs[i + 1];
 
     letterDensity.appendChild(letter);
+    barContainer.appendChild(bar);
+    bar.appendChild(progress);
     numberDensity.appendChild(occurences);
   }
 
