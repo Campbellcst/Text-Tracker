@@ -147,7 +147,7 @@ function countLetters() {
 
     const progress = document.createElement("div");
     progress.classList.add("progressBar");
-    let percent = (flatPairs[i + 1] / totalLetters) * 100 + "%";
+    let percent = ((flatPairs[i + 1] / totalLetters) * 100).toFixed(2) + "%";
     progress.style.width = percent;
 
     const occurences = document.createElement("p");
