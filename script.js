@@ -21,6 +21,12 @@ const charLimit = document.getElementById("charLimit");
 
 textArea.addEventListener("input", update);
 
+textArea.addEventListener("keydown", (e) => {
+  if (e.key === "Enter") {
+    countLetters();
+  }
+});
+
 themeToggle.addEventListener("click", () => {
     let dark = "true";
     
@@ -38,6 +44,7 @@ themeToggle.addEventListener("click", () => {
     textArea.classList.toggle("dark");
     statsClass.classList.toggle("dark");
     header.classList.toggle("dark");
+    document.div.classList.toggle("dark");
 });
 
 excludeSpacesBtn.addEventListener("click", update);
@@ -60,7 +67,7 @@ function update() {
     .split(/[.!?]/)
     .filter((str) => str.trim().length > 0).length;
   let charLimitValue = charLimit.value;
-  
+
   if (excludeSpacesBtn.checked) {
     characters = text.trim().replaceAll(" ", "").length;
   }
@@ -140,6 +147,7 @@ function countLetters() {
 
     const progress = document.createElement("div");
     progress.classList.add("progressBar");
+    progress.style.width = (flatPairs[i + 1] / totalLetters) * 100 + "%";
 
     const occurences = document.createElement("p");
     occurences.textContent = flatPairs[i + 1];
