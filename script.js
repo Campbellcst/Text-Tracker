@@ -91,7 +91,7 @@ function countLetters() {
   barContainer.innerHTML = "";
   
   let text = textArea.value;
-  let textNoSpaces = text.toLowerCase().trim().replaceAll(" ", "");
+  let textNoSpaces = text.toLowerCase().trim().replaceAll(" ", "").replaceAll(/\n/g, "");
   let letters = [];
   let sortedLetters = [];
   let letterCount = [];
